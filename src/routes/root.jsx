@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useEffect } from "react";
+import { SidebarStyled } from "../styles/Sidebar.styled";
+
 
 export async function action() {
   const contact = await createContact();
@@ -35,7 +37,7 @@ export default function Root() {
     new URLSearchParams(navigation.location.search).has("q");
   return (
     <>
-      <div id="sidebar">
+      <SidebarStyled>
         <h1>React Router Contacts</h1>
         <div>
           <Form id="search-form" role="search">
@@ -54,7 +56,6 @@ export default function Root() {
                 });
               }}
             />
-            <div id="search-spinner" aria-hidden hidden={!searching} />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
           <Form method="post">
@@ -90,7 +91,7 @@ export default function Root() {
             </p>
           )}
         </nav>
-      </div>
+      </SidebarStyled>
       <div
         id="detail"
         className={navigation.state === "loading" ? "loading" : ""}
